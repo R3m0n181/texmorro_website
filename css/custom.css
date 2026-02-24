@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-why-choose-us-body
+btn-default
 -------------------------------------------------------------------------------------- */
 
 /************************************/
@@ -52,12 +52,13 @@ why-choose-us-body
 
 :root{
 	--primary-color				: #0B2B3F;
-	--secondary-color			: #FFFFFF;
-	--bg-color					: #FAF0E6;
+	--secondary-color			: #FAFAFA;
+	--bg-color					: #FCF5E5;
 	--text-color				: #555555;
+	--action-color         		: #BCCA25;
 	--accent-color				: #FBE87E;
 	--white-color				: #FFFFFF;
-	--divider-color				: #0B2B3F1A;
+	--divider-color				: #0b2b3f52;
 	--dark-divider-color		: #FFFFFF14;
 	--error-color				: rgb(230, 87, 87);
 	--default-font				: "Plus Jakarta Sans", sans-serif;
@@ -7731,7 +7732,7 @@ header.main-header .header-sticky.active{
 
 .main-header.header-metal .header-sticky{
     background: var(--secondary-color);
-	border: none;
+	border: 1px solid var(--primary-color);
     border-radius: 10px;
 }
 
