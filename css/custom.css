@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-btn-default
+benefits-content-body
 -------------------------------------------------------------------------------------- */
 
 /************************************/
@@ -2008,7 +2008,7 @@ header.main-header .header-sticky.active{
 }
 
 .benefits-body-item-list{
-	width: calc(50% - 15px);
+	width: calc(100% - 15px);
 	align-content: center;
 }
 
