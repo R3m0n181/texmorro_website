@@ -44,6 +44,8 @@
 36. Home - Version 3 css
 
 benefits-item-list-stone
+service-solution-item-list
+
 -------------------------------------------------------------------------------------- */
 
 /************************************/
@@ -2243,7 +2245,7 @@ header.main-header .header-sticky.active{
 /***   	12. Our Features css	  ***/
 /************************************/
 
-.our-features{
+.btn-default{
     padding: 100px 0;
 }
 
@@ -4401,11 +4403,10 @@ header.main-header .header-sticky.active{
 
 .service-solution-item{
 	position: relative;
-	width: calc(33.33% - 40px);
 	text-align: center;
 }
 
-.service-solution-item:nth-child(3n + 3)::before,
+.service-solution-item:nth-child(4n)::before,
 .service-solution-item:last-child::before{
 	display: none;
 }
