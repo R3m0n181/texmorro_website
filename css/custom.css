@@ -45,6 +45,9 @@
 
 benefits-item-list-stone
 service-solution-item-list
+.btn-default {
+    padding: 100px 0;
+}Our Features
 
 -------------------------------------------------------------------------------------- */
 
@@ -2244,10 +2247,6 @@ header.main-header .header-sticky.active{
 /************************************/
 /***   	12. Our Features css	  ***/
 /************************************/
-
-.btn-default{
-    padding: 100px 0;
-}
 
 .our-features .section-title.section-title-center{
     max-width: 1050px;
