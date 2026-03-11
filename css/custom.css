@@ -11835,6 +11835,23 @@ header.main-header.header-stone .header-sticky.active{
 	display: none;
 }
 
+.cta-box {
+	padding: 100px 0;
+	color: var(--white-color);
+	text-align: center;
+	background-color: var(--primary-color);
+	border-radius: 25px;
+	border: 2px solid var(--action-color);
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    color: transparent; 
+}
+
 @media only screen and (max-width: 1440px){
 
 	.hero-content-stone{
