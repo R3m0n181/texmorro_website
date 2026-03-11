@@ -11836,6 +11836,7 @@ header.main-header.header-stone .header-sticky.active{
 }
 
 .cta-box {
+	height: auto;
 	padding: 100px 0;
 	color: var(--white-color);
 	text-align: center;
@@ -11850,6 +11851,11 @@ header.main-header.header-stone .header-sticky.active{
     background-clip: text;
     -webkit-text-fill-color: transparent; 
     color: transparent; 
+}
+@media (max-width: 768px) {
+    .cta-box {
+        height: 80vh;
+    }
 }
 
 @media only screen and (max-width: 1440px){
