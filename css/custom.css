@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-cta-box
+fcta-box
 
 -------------------------------------------------------------------------------------- */
 
@@ -2465,6 +2465,134 @@ header.main-header .header-sticky.active {
 
 .feature-info-image {
   width: calc(52% - 20px);
+}
+
+
+/************************************/
+/***     13a. Our Products css    ***/
+/************************************/
+
+.our-products {
+  padding: 100px 0;
+}
+
+.product-category-label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 50px 0 30px;
+}
+
+.product-category-label:first-of-type {
+  margin-top: 0;
+}
+
+.product-category-label h4 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-color);
+  white-space: nowrap;
+  background: var(--accent-color);
+  padding: 5px 14px;
+  border-radius: 30px;
+}
+
+.product-category-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--divider-color);
+}
+
+.product-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  border: 1px solid var(--divider-color);
+  padding: 40px 30px;
+  height: calc(100% - 30px);
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.product-item::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 10px;
+  transform: scale(0.5);
+  opacity: 0;
+  z-index: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.product-item:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.product-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30px;
+  right: 30px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 0 0 4px 4px;
+}
+
+.product-item-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.product-item .icon-box {
+  position: relative;
+  background-color: var(--accent-color);
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-item-content {
+  position: relative;
+  z-index: 1;
+}
+
+.product-item-content h3 {
+  font-size: 20px;
+  transition: all 0.4s ease-in-out;
+}
+
+.product-item-content p {
+  margin: 12px 0 0;
+  line-height: 1.6em;
+  transition: all 0.4s ease-in-out;
+}
+
+.product-item:hover .product-item-content h3,
+.product-item:hover .product-item-content p {
+  color: var(--white-color);
+}
+
+.product-item .icon-box svg {
+  transition: all 0.4s ease-in-out;
+  color: var(--primary-color);
 }
 
 /************************************/
@@ -12808,3 +12936,5 @@ header.main-header.header-stone .header-sticky.active {
     right: -12px;
   }
 }
+
+
