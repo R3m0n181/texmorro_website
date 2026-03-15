@@ -434,5 +434,65 @@
 		}
 	}
 	/* Service Item List Stone End */
-	
+
+	/* Product Category Tabs (Our Products) */
+	(function() {
+		var $productTabs = $('.product-category-tab');
+		var $productSection = $('#our-products');
+
+		if (!$productTabs.length || !$productSection.length) {
+			return;
+		}
+
+		function slugify(text) {
+			return String(text)
+				.toLowerCase()
+				.trim()
+				.replace(/&/g, '-')
+				.replace(/[^a-z0-9]+/g, '-')
+				.replace(/^-+|-+$/g, '');
+		}
+
+		var groups = [];
+		$productSection.find('.product-category-label').each(function () {
+			var $label = $(this);
+			var name = $.trim($label.text());
+			var category = slugify(name);
+			var $labelCol = $label.closest('.col-12');
+
+			var $items = $();
+			var $next = $labelCol.next();
+			while ($next.length && !$next.find('.product-category-label').length) {
+				$items = $items.add($next);
+				$next = $next.next();
+			}
+
+			groups.push({
+				category: category,
+				$labelCol: $labelCol,
+				$items: $items
+			});
+		});
+
+		function showCategory(category) {
+			groups.forEach(function (group) {
+				var show = group.category === category;
+				group.$labelCol.toggle(show);
+				group.$items.toggle(show);
+			});
+		}
+
+		$productTabs.on('click', function () {
+			var category = $(this).data('category');
+			$productTabs.removeClass('active');
+			$(this).addClass('active');
+			showCategory(category);
+		});
+
+		var initialCategory = $productTabs.filter('.active').data('category') || (groups.length ? groups[0].category : null);
+		if (initialCategory) {
+			showCategory(initialCategory);
+		}
+	})();
+
 })(jQuery);

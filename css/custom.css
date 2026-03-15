@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-fcta-box
+product-item-content
 
 -------------------------------------------------------------------------------------- */
 
@@ -2489,7 +2489,7 @@ header.main-header .header-sticky.active {
 }
 
 .product-category-label h4 {
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -2507,6 +2507,37 @@ header.main-header .header-sticky.active {
   background: var(--divider-color);
 }
 
+.product-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0 20px;
+}
+
+.product-category-tab {
+  border: 1px solid var(--divider-color);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--primary-color);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.product-category-tab:hover {
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 1);
+}
+
+.product-category-tab.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
 .product-item {
   position: relative;
   display: flex;
@@ -2520,6 +2551,7 @@ header.main-header .header-sticky.active {
   margin-bottom: 30px;
   overflow: hidden;
   transition: all 0.4s ease-in-out;
+  align-items: center;
 }
 
 .product-item::before {
@@ -2575,7 +2607,7 @@ header.main-header .header-sticky.active {
 }
 
 .product-item-content h3 {
-  font-size: 20px;
+  font-size: clamp(16px, 3.2vw, 22px);
   transition: all 0.4s ease-in-out;
 }
 
