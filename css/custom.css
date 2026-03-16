@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-problem-item
+why-choose-us-metal
 
 -------------------------------------------------------------------------------------- */
 
@@ -8084,7 +8084,7 @@ header.main-header.header-metal .header-sticky.active {
 	background: url("../images/hero-bg-image-metal.jpg") no-repeat;
 	background-position: center center;
 	background-size: cover;
-	padding: 185px 0;
+	padding: 265px 0 200px;
 	overflow: hidden;
 }
 
@@ -8099,6 +8099,7 @@ header.main-header.header-metal .header-sticky.active {
 			rgba(11, 43, 63, 0) 42.05%,
 			rgba(11, 43, 63, 0.6) 58.6%,
 			#0b2b3f 100%);
+	opacity: 65%;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
@@ -12214,6 +12215,17 @@ header.main-header.header-stone .header-sticky.active {
 	}
 }
 
+@media (min-width: 992px) {
+    .benefits-item-list-stone {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .benefits-item-stone {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}
+
 
 .fcta-box {
 	height: auto;
@@ -12254,6 +12266,29 @@ header.main-header.header-stone .header-sticky.active {
 	color: var(--white-color);
 	margin: 0;
 }
+
+.why-choose-us-metal.dark-section .why-choose-item-content-metal h3 {
+    color: var(--primary-color);
+}
+
+.why-choose-us-metal.dark-section .why-choose-item-content-metal p {
+    color: var(--text-color);
+}
+
+.why-choose-us-metal.dark-section .section-title h3,
+.why-choose-us-metal.dark-section .section-title h2 {
+    color: var(--white-color);
+}
+
+.why-choose-us-metal.dark-section .why-choose-item-metal::before {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.why-choose-us-metal.dark-section .why-choose-item-metal .icon:hover::before {
+    background-color: var(--primary-color);
+}
+
+
 
 @media (max-width: 768px) {
 	.fcta-box {
