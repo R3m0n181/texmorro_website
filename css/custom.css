@@ -43,8 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-why-choose-us-metal
-
+service-key-point-list
 -------------------------------------------------------------------------------------- */
 
 /************************************/
@@ -12287,7 +12286,6 @@ header.main-header.header-stone .header-sticky.active {
 .why-choose-us-metal.dark-section .why-choose-item-metal .icon:hover::before {
     background-color: var(--primary-color);
 }
-
 
 
 @media (max-width: 768px) {
