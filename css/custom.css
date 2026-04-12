@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-feature-item-content
+accordion-header
 -------------------------------------------------------------------------------------- */
 
 /************************************/
@@ -3093,6 +3093,9 @@ header.main-header .header-sticky.active {
   .accordion-button.collapsed {
   border-bottom: none;
   padding-bottom: 3px;
+}
+.accordion-button {
+  font-weight: 600;  /* Already somewhat bold, increase to 800 for bolder */
 }
 
 .faq-accordion .accordion-item .accordion-button::after,
