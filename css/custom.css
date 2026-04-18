@@ -519,6 +519,148 @@ a:focus {
 }
 
 /************************************/
+/***      Trust Strip             ***/
+/************************************/
+
+.trust-strip {
+    padding: 60px 0;
+    border: 1px solid var(--divide-color);
+    overflow: hidden;
+    background: var(--accent-color);
+}
+
+.trust-strip-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.trust-strip-header p {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary-color);
+    opacity: 0.55;
+    margin: 0;
+}
+
+/* Scrolling track */
+.trust-strip-track-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fade edges */
+.trust-strip-track-wrapper::before,
+.trust-strip-track-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.trust-strip-track-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--accent-color), transparent);
+}
+
+.trust-strip-track-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--accent-color), transparent);
+}
+
+.trust-strip-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: max-content;
+    animation: trustScroll 28s linear infinite;
+}
+
+.trust-strip-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes trustScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.trust-logo-item {
+    flex-shrink: 0;
+    width: 220px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px;
+    border-right: 1px solid var(--divider-color);
+}
+
+.trust-logo-item img {
+    max-width: 100px;
+    max-height: 64px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(1) opacity(0.45);
+    transition: filter 0.3s ease;
+}
+
+.trust-logo-item:hover img {
+    filter: grayscale(0) opacity(1);
+}
+
+/* Dark section variant */
+.trust-strip.dark-section .trust-strip-header p {
+    color: rgba(255,255,255,0.45);
+}
+
+.trust-strip.dark-section .trust-strip-track-wrapper::before {
+    background: linear-gradient(to right, var(--dark-bg-color, #0b2b3f), transparent);
+}
+
+.trust-strip.dark-section .trust-strip-track-wrapper::after {
+    background: linear-gradient(to left, var(--dark-bg-color, #0b2b3f), transparent);
+}
+
+.trust-strip.dark-section .trust-logo-item {
+    border-right-color: var(--dark-divider-color);
+}
+
+.trust-strip.dark-section .trust-logo-item img {
+    filter: grayscale(1) brightness(10) opacity(0.3);
+}
+
+.trust-strip.dark-section .trust-logo-item:hover img {
+    filter: grayscale(0) brightness(1) opacity(1);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .trust-strip-track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .trust-logo-item {
+        width: 120px;
+        padding: 0 20px;
+    }
+    .trust-strip-track-wrapper::before,
+    .trust-strip-track-wrapper::after {
+        width: 60px;
+    }
+}
+
+/************************************/
 /**** 	   03. Header css		 ****/
 /************************************/
 
