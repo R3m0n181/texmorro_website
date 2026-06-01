@@ -43,7 +43,7 @@
 35. Home - Version 2 css
 36. Home - Version 3 css
 
-feature-item-content
+final-cta
 -------------------------------------------------------------------------------------- */
 
 /************************************/
@@ -258,7 +258,7 @@ a:focus {
 }
 
 .btn-default:hover:before {
-  background-color: var(--white-color);
+  background-color: var(--accent-color);
   background-image: url("../images/arrow-primary.svg");
 }
 
@@ -3077,7 +3077,7 @@ header.main-header .header-sticky.active {
   margin-bottom: 0;
 }
 
-.faq-accordion .accordion-header .feature-item-content {
+.faq-accordion .accordion-header .accordion-button {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.4em;
@@ -12391,7 +12391,7 @@ header.main-header.header-stone .header-sticky.active {
   }
 }
 
-.fcta-box {
+.final-cta-box {
   height: auto;
   padding: 50px 0;
   color: var(--white-color);
@@ -12987,7 +12987,7 @@ header.main-header.header-stone .header-sticky.active {
 
 
 @media (max-width: 768px) {
-  .fcta-box {
+  .final-cta-box {
     height: 80vh;
   }
 }
