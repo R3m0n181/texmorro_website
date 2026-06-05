@@ -15,17 +15,7 @@ import {
   doc,
   deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-// Setup config
-const firebaseConfig = {
-  apiKey: "AIzaSyDcOcGYXHgma9yFdUqNSKmeVi_Ew_Sbp3Q",
-  authDomain: "texmorro-c6c76.firebaseapp.com",
-  projectId: "texmorro-c6c76",
-  storageBucket: "texmorro-c6c76.firebasestorage.app",
-  messagingSenderId: "942262670790",
-  appId: "1:942262670790:web:aec64957c1078190018ec7",
-  measurementId: "G-3KXZMCXC6S",
-};
+import { firebaseConfig } from "../config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

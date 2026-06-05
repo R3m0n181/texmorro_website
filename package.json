@@ -1,5 +1,17 @@
 {
+  "name": "texmorro-website",
+  "version": "1.0.0",
+  "description": "Texmorro - Apparel Manufacturing & Brand Support",
+  "type": "module",
+  "scripts": {
+    "dev": "http-server -p 3000 -c-1",
+    "build": "echo 'No build needed for static site'",
+    "preview": "http-server"
+  },
   "dependencies": {
     "firebase": "^12.14.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
