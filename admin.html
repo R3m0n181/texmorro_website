@@ -3,12 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
     <title>Admin — Submissions</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="css/slicknav.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
@@ -18,21 +24,209 @@
     <link rel="stylesheet" href="css/mousecursor.css" />
     <link href="css/custom.css" rel="stylesheet" media="screen" />
     <style>
-      .dashboard-actions { margin-bottom:24px; }
-      .dashboard-note { margin-bottom:24px; }
-      .table-section { margin-bottom:40px; }
-      .table-section h3 { margin-bottom:16px; }
-      .details-row { display:none; background-color: #fcfcfc !important; }
-      .details-table { margin: 15px 0; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-      .details-table th { width: 30%; background-color: #f1f3f5; color: #495057; font-weight: 600; text-transform: capitalize; }
-      .admin-summary { padding: 30px; background: rgba(255,255,255,.95); border-radius: 30px; box-shadow: 0 30px 80px rgba(0,0,0,0.08); }
-      .admin-panel { margin-top: -80px; }
-      .login-form-container { max-width: 400px; margin: 0 auto; }
-      .btn-delete { color: #dc3545; border-color: #dc3545; }
-      .btn-delete:hover { color: #fff; background-color: #dc3545; border-color: #dc3545; }
-      @media (max-width: 767px) {
-        .admin-panel { margin-top: 0; }
+      /* --- Dashboard Layout & Panels --- */
+      .admin-panel {
+        margin-top: -80px;
+        position: relative;
+        z-index: 5;
       }
+
+      .admin-summary {
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(11, 43, 63, 0.05);
+        border: 1px solid var(--divider-color);
+      }
+
+      .dashboard-actions {
+        margin-bottom: 24px;
+      }
+
+      .dashboard-note {
+        margin-bottom: 24px;
+        color: var(--primary-color);
+      }
+
+      .table-section {
+        margin-bottom: 40px;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid rgba(11, 43, 63, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+      }
+
+      .table-section h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: var(--primary-color);
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .table-section h3::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 25%;
+        height: 50%;
+        width: 4px;
+        background: var(--action-color);
+        border-radius: 2px;
+      }
+
+      /* --- Master Dashboard Table Styles --- */
+      #tables table:not(.details-table) {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px; /* Clean row spacing look */
+        margin-top: 15px;
+      }
+
+      #tables table:not(.details-table) thead th {
+        background-color: transparent;
+        color: var(--text-color);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        padding: 12px 20px;
+        border: none;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      #tables table:not(.details-table) tbody tr:not(.details-row) {
+        background: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        transition: all 0.2s ease-in-out;
+      }
+
+      #tables table:not(.details-table) tbody tr:not(.details-row):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(11, 43, 63, 0.08);
+        background-color: #fafbfc;
+      }
+
+      #tables table:not(.details-table) tbody td {
+        padding: 18px 20px;
+        vertical-align: middle;
+        color: var(--primary-color);
+        font-size: 15px;
+        border-top: 1px solid rgba(11, 43, 63, 0.06);
+        border-bottom: 1px solid rgba(11, 43, 63, 0.06);
+      }
+
+      #tables table:not(.details-table) tbody td:first-child {
+        border-left: 1px solid rgba(11, 43, 63, 0.06);
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        font-weight: 600;
+      }
+
+      #tables table:not(.details-table) tbody td:last-child {
+        border-right: 1px solid rgba(11, 43, 63, 0.06);
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      /* --- Action & Sub-elements Layout --- */
+      .details-row {
+        display: none;
+        background-color: var('--secondary-color') !important;
+      }
+
+      .details-row td {
+        padding: 0 25px 25px 25px !important;
+        border-radius: 0 0 8px 8px !important;
+        border-top: none !important;
+      }
+
+      /* --- Nested Internal Information View Card --- */
+      .details-table {
+        margin: 10px 0 0 0;
+        background: #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
+        table-layout: fixed;
+        width: 100%;
+        border: 1px solid rgba(11, 43, 63, 0.1);
+      }
+
+      .details-table tr:not(:last-child) th,
+      .details-table tr:not(:last-child) td {
+        border-bottom: 1px solid #edf2f7;
+      }
+
+      .details-table th {
+        width: 25%;
+        background-color: #f7fafc;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-transform: capitalize;
+        word-wrap: break-word;
+        padding: 14px 20px;
+        font-size: 14px;
+      }
+
+      .details-table td {
+        word-wrap: break-word;
+        white-space: normal;
+        word-break: break-all;
+        padding: 14px 20px;
+        font-size: 14px;
+        color: var(--text-color);
+      }
+
+      /* --- Custom Dashboard Component Fixes --- */
+      .login-form-container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .btn-delete {
+        color: #e53e3e;
+        border: 1px solid #feb2b2;
+        background-color: #fff5f5;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .btn-delete:hover {
+        color: #fff;
+        background-color: #e53e3e;
+        border-color: #e53e3e;
+      }
+
+      .btn-view-details {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-right: 8px;
+        transition: opacity 0.2s;
+      }
+      .btn-view-details:hover {
+        opacity: 0.9;
+        color: #fff;
+      }
+
+      .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: none;
+      }
+
+
     </style>
   </head>
   <body>
@@ -46,16 +240,40 @@
             <div class="collapse navbar-collapse main-menu">
               <div class="nav-menu-wrapper">
                 <ul class="navbar-nav mr-auto" id="menu">
-                  <li class="nav-item"><a class="nav-link" href="brand_services_index.html">Brand Sales</a></li>
-                  <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                  <li class="nav-item"><a class="nav-link" href="how_it_works.html">How It Works</a></li>
-                  <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                  <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                  <li class="mobile-menu-btn"><a href="corporate_sales_index.html" class="btn-default btn-highlighted">Corporate Sales</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="brand_services_index.html"
+                      >Brand Sales</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="services.html">Services</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="how_it_works.html"
+                      >How It Works</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </li>
+                  <li class="mobile-menu-btn">
+                    <a
+                      href="corporate_sales_index.html"
+                      class="btn-default btn-highlighted"
+                      >Corporate Sales</a
+                    >
+                  </li>
                 </ul>
               </div>
               <div class="header-btn">
-                <a href="corporate_sales_index.html" class="btn-default btn-highlighted border border-2">Corporate Sales</a>
+                <a
+                  href="corporate_sales_index.html"
+                  class="btn-default btn-highlighted border border-2"
+                  >Corporate Sales</a
+                >
               </div>
             </div>
             <div class="navbar-toggle"></div>
@@ -70,11 +288,15 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header-box">
-              <h1 class="text-anime-style-3" data-cursor="-opaque">Admin Submissions</h1>
+              <h1 class="text-anime-style-3" data-cursor="-opaque">
+                Admin Submissions
+              </h1>
               <nav class="wow fadeInUp">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Admin
+                  </li>
                 </ol>
               </nav>
             </div>
@@ -83,47 +305,83 @@
       </div>
     </div>
 
-    <div class="our-features bg-section py-5 mt-5 admin-panel">
+    <div class="our-features bg-section py-5 admin-panel">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-10">
             <div class="admin-summary">
               <div class="section-title section-title-center">
                 <h3 class="wow fadeInUp">Dashboard</h3>
+                <h2 data-cursor="-opaque">View All Form Submissions</h2>
+                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                  Log in with your authorized email and password to review
+                  sample, brand, and corporate enquiries.
+                </p>
               </div>
 
               <div id="loginSection" class="login-form-container">
-                <div class="section-title section-title-center">
-                  <h2 data-cursor="-opaque">View All Equiry Forms</h2>
-                  <p class="wow fadeInUp" data-wow-delay="0.2s">Log in with your authorized email and password to review sample, brand, and corporate enquiries.</p>
-                </div>
                 <form id="loginForm">
                   <div class="mb-3">
-                    <label for="adminEmail" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="adminEmail" required placeholder="admin@texmorro.com" />
+                    <label for="adminEmail" class="form-label"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="adminEmail"
+                      required
+                      placeholder="admin@texmorro.com"
+                    />
                   </div>
                   <div class="mb-3">
-                    <label for="adminPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="adminPassword" required placeholder="••••••••" />
+                    <label for="adminPassword" class="form-label"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="adminPassword"
+                      required
+                      placeholder="••••••••"
+                    />
                   </div>
-                  <button type="submit" id="signInBtn" class="btn-default btn-highlighted w-100 border-0">Sign In</button>
+                  <button
+                    type="submit"
+                    id="signInBtn"
+                    class="btn-default btn-highlighted w-100 border-0"
+                  >
+                    Sign In
+                  </button>
                 </form>
               </div>
 
               <div class="text-center dashboard-actions">
-                <button id="signOutBtn" class="btn-default btn-highlighted" style="display:none">Sign Out</button>
+                <button
+                  id="signOutBtn"
+                  class="btn-default btn-highlighted"
+                  style="display: none"
+                >
+                  Sign Out
+                </button>
               </div>
 
-              <div id="authInfo" class="dashboard-note text-center font-weight-bold"></div>
-              <div id="error" class="alert alert-danger" style="display:none"></div>
+              <div
+                id="authInfo"
+                class="dashboard-note text-center font-weight-bold"
+              ></div>
+              <div
+                id="error"
+                class="alert alert-danger"
+                style="display: none"
+              ></div>
             </div>
           </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-4">
           <div class="col-xl-12">
-            <div id="content" style="display:none">
-              <div id="tables"></div>
+            <div id="content" style="display: none">
+              <div id="tables" class="table-responsive"></div>
             </div>
           </div>
         </div>
@@ -137,10 +395,14 @@
             <div class="col-lg-12">
               <div class="footer-header-box-stone">
                 <div class="section-title">
-                  <h2 class="text-anime-style-3" data-cursor="-opaque">Ready to work with a manufacturer who gets it right?</h2>
+                  <h2 class="text-anime-style-3" data-cursor="-opaque">
+                    Ready to work with a manufacturer who gets it right?
+                  </h2>
                 </div>
                 <div class="contact-us-circle">
-                  <a href="contact.html"><img src="images/contact-us-circle.svg" alt="" /></a>
+                  <a href="contact.html"
+                    ><img src="images/contact-us-circle.svg" alt=""
+                  /></a>
                 </div>
               </div>
             </div>
@@ -151,16 +413,61 @@
         <div class="row">
           <div class="col-xl-4 col-lg-4">
             <div class="about-footer-stone">
-              <a class="footer-logo-stone" href="index.html"><img src="images/footer-logo.svg" alt="" /></a>
+              <a class="footer-logo-stone" href="index.html"
+                ><img src="images/footer-logo.svg" alt=""
+              /></a>
               <div class="about-footer-content-stone">
-                <h3 style="color: var(--white-color)">Low MOQ Production, Sample-First Process, Ethical Manufacturing</h3>
+                <h3 style="color: var(--white-color)">
+                  Low MOQ Production, Sample-First Process, Ethical
+                  Manufacturing
+                </h3>
                 <p>Made in Bangladesh. Built for growing brands.</p>
               </div>
               <div class="footer-social-links-stone">
                 <ul>
-                  <li><a href="https://www.facebook.com/profile.php?id=61582831757913"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg></a></li>
-                  <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg></a></li>
-                  <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg></a></li>
+                  <li>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61582831757913"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                        /></svg
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                        /></svg
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                        /></svg
+                    ></a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -170,8 +477,14 @@
                   <h3>Services</h3>
                   <ul>
                     <li><a href="services.html">All Services</a></li>
-                    <li><a href="brand_services_index.html">Brand Manufacturing</a></li>
-                    <li><a href="corporate_sales_index.html">Corporate Orders</a></li>
+                    <li>
+                      <a href="brand_services_index.html"
+                        >Brand Manufacturing</a
+                      >
+                    </li>
+                    <li>
+                      <a href="corporate_sales_index.html">Corporate Orders</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="footer-links-stone">
@@ -186,16 +499,32 @@
                 <div class="footer-links-stone footer-contact-links-stone">
                   <h3>Get in Touch</h3>
                   <div class="footer-contact-item-stone">
-                    <div class="icon-box"><img src="images/icon-mail-accent.svg" alt="" /></div>
-                    <div class="footer-contact-content-stone"><p><a href="mailto:info@texmorro.com">texmorro@gmail.com</a></p></div>
+                    <div class="icon-box">
+                      <img src="images/icon-mail-accent.svg" alt="" />
+                    </div>
+                    <div class="footer-contact-content-stone">
+                      <p>
+                        <a href="mailto:info@texmorro.com"
+                          >texmorro@gmail.com</a
+                        >
+                      </p>
+                    </div>
                   </div>
                   <div class="footer-contact-item-stone">
-                    <div class="icon-box"><img src="images/icon-phone-accent.svg" alt="" /></div>
-                    <div class="footer-contact-content-stone"><p><a href="tel:+8801756375660">+880 1756-375660</a></p></div>
+                    <div class="icon-box">
+                      <img src="images/icon-phone-accent.svg" alt="" />
+                    </div>
+                    <div class="footer-contact-content-stone">
+                      <p><a href="tel:+8801756375660">+880 1756-375660</a></p>
+                    </div>
                   </div>
                   <div class="footer-contact-item-stone">
-                    <div class="icon-box"><img src="images/icon-location-accent.svg" alt="" /></div>
-                    <div class="footer-contact-content-stone"><p>273/2, Shantibag, Dhaka, Bangladesh, 1214</p></div>
+                    <div class="icon-box">
+                      <img src="images/icon-location-accent.svg" alt="" />
+                    </div>
+                    <div class="footer-contact-content-stone">
+                      <p>273/2, Shantibag, Dhaka, Bangladesh, 1214</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -210,7 +539,9 @@
                 <div class="footer-privacy-policy-stone">
                   <ul>
                     <li><a href="privacy_policy.html">Privacy Policy</a></li>
-                    <li><a href="terms_conditions.html">Terms &amp; Conditions</a></li>
+                    <li>
+                      <a href="terms_conditions.html">Terms &amp; Conditions</a>
+                    </li>
                     <li><a href="help.html">Help</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                   </ul>

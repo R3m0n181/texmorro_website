@@ -13447,63 +13447,211 @@ header.main-header.header-stone .header-sticky.active {
   margin-bottom: 20px;
 }
 
+
+
+/* --- Dashboard Layout & Panels --- */
+.admin-panel {
+  margin-top: -80px;
+  position: relative;
+  z-index: 5;
+}
+
+.admin-summary {
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(11, 43, 63, 0.05);
+  border: 1px solid var(--divider-color);
+}
+
 .dashboard-actions {
   margin-bottom: 24px;
 }
 
 .dashboard-note {
   margin-bottom: 24px;
+  color: var(--primary-color);
 }
 
 .table-section {
   margin-bottom: 40px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(11, 43, 63, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
 }
 
 .table-section h3 {
-  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--primary-color);
+  position: relative;
+  padding-left: 15px;
 }
 
+.table-section h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 4px;
+  background: var(--action-color);
+  border-radius: 2px;
+}
+
+/* --- Master Dashboard Table Styles --- */
+#tables table:not(.details-table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  /* Clean row spacing look */
+  margin-top: 15px;
+}
+
+#tables table:not(.details-table) thead th {
+  background-color: transparent;
+  color: var(--text-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 12px 20px;
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+#tables table:not(.details-table) tbody tr:not(.details-row) {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease-in-out;
+}
+
+#tables table:not(.details-table) tbody tr:not(.details-row):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(11, 43, 63, 0.08);
+  background-color: #fafbfc;
+}
+
+#tables table:not(.details-table) tbody td {
+  padding: 18px 20px;
+  vertical-align: middle;
+  color: var(--primary-color);
+  font-size: 15px;
+  border-top: 1px solid rgba(11, 43, 63, 0.06);
+  border-bottom: 1px solid rgba(11, 43, 63, 0.06);
+}
+
+#tables table:not(.details-table) tbody td:first-child {
+  border-left: 1px solid rgba(11, 43, 63, 0.06);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  font-weight: 600;
+}
+
+#tables table:not(.details-table) tbody td:last-child {
+  border-right: 1px solid rgba(11, 43, 63, 0.06);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* --- Action & Sub-elements Layout --- */
 .details-row {
   display: none;
-  background-color: #fcfcfc !important;
+  background-color: var('--secondary-color') !important;
 }
 
+.details-row td {
+  padding: 0 25px 25px 25px !important;
+  border-radius: 0 0 8px 8px !important;
+  border-top: none !important;
+}
+
+/* --- Nested Internal Information View Card --- */
 .details-table {
-  margin: 15px 0;
-  background: #fff;
-  border-radius: 8px;
+  margin: 10px 0 0 0;
+  background: #ffffff;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
+  table-layout: fixed;
+  width: 100%;
+  border: 1px solid rgba(11, 43, 63, 0.1);
+}
+
+.details-table tr:not(:last-child) th,
+.details-table tr:not(:last-child) td {
+  border-bottom: 1px solid #edf2f7;
 }
 
 .details-table th {
-  width: 30%;
-  background-color: #f1f3f5;
-  color: #495057;
-  font-weight: 600;
+  width: 25%;
+  background-color: #f7fafc;
+  color: var(--primary-color);
+  font-weight: 700;
   text-transform: capitalize;
+  word-wrap: break-word;
+  padding: 14px 20px;
+  font-size: 14px;
 }
 
-.admin-summary {
-  padding: 30px;
-  background: rgba(255, 255, 255, .95);
-  border-radius: 30px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
+.details-table td {
+  word-wrap: break-word;
+  white-space: normal;
+  word-break: break-all;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--text-color);
 }
 
-.admin-panel {
-  margin-top: -80px;
-}
-
+/* --- Custom Dashboard Component Fixes --- */
 .login-form-container {
   max-width: 400px;
   margin: 0 auto;
 }
 
-@media (max-width: 767px) {
-  .admin-panel {
-    margin-top: 0;
-  }
+.btn-delete {
+  color: #e53e3e;
+  border: 1px solid #feb2b2;
+  background-color: #fff5f5;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.btn-view-details {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 8px;
+  transition: opacity 0.2s;
+}
+
+.btn-view-details:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: none;
 }
 
 
